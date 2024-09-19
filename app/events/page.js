@@ -1,7 +1,19 @@
-export default function EventsPage(){
+
+import EventCard from "@/components/EventCard";
+export default async function EventsPage(){
+   const response= await fetch("https://qevent-backend.labs.crio.do/events") ;
+   const events= await response.json();
+   
     return (
-        <>
-        <h1>Events Page</h1>
-        </>
+        
+        <div className="w-full flex flex-wrap">
+{events.map(event=>{
+            return(
+                <EventCard eventData={event}/>
+            )
+        })}
+        </div>
+        
+        
     )
 }
